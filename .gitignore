@@ -1,0 +1,41 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+.env
+*.env
+
+# Node
+node_modules/
+.next/
+out/
+dist/
+build/
+
+# ML
+ml/models/*.joblib
+ml/models/*.pkl
+ml/models/*.pt
+*.onnx
+
+# Data
+data/
+*.eml
+*.msg
+*.mbox
+*.pcap
+
+# IDE
+.vscode/
+.idea/
+.DS_Store
+
+# Logs
+*.log
+logs/
+
+# Misc
+node_modules/
