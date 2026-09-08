@@ -34,6 +34,26 @@ docker compose up --build
 # Frontend: http://localhost:3000
 ```
 
+## Production deployment
+
+Deploy the `backend` as a public FastAPI service separately from the Next.js frontend. In Vercel, set this environment variable for the frontend project:
+
+```text
+NEXT_PUBLIC_API_URL=https://your-backend-domain.example.com
+```
+
+On the backend host, set the Vercel origin:
+
+```text
+FRONTEND_URL=https://your-app.vercel.app
+```
+
+Redeploy both services after changing these values. The frontend intentionally uses `localhost:8000` only during local development.
+
+### Render deployment
+
+This repository includes `render.yaml` for Render Blueprint deployment. In Render, choose **New > Blueprint**, connect this repository, and apply the Blueprint. It creates `sih-codex-api` and `sih-codex-frontend`, wires their URLs together, and mounts persistent storage for uploaded artifacts. The API uses Render's smallest paid web plan because persistent disks are not available on free services.
+
 ## Project Structure
 ```
 backend/          FastAPI application

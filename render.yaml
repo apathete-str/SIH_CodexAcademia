@@ -1,0 +1,31 @@
+services:
+  - type: web
+    name: sih-codex-api
+    runtime: docker
+    rootDir: backend
+    healthCheckPath: /health
+    plan: starter
+    disk:
+      name: artifacts
+      mountPath: /app/data
+      sizeGB: 1
+    envVars:
+      - key: ENVIRONMENT
+        value: production
+      - key: FRONTEND_URL
+        fromService:
+          type: web
+          name: sih-codex-frontend
+          property: host
+
+  - type: web
+    name: sih-codex-frontend
+    runtime: docker
+    rootDir: frontend
+    plan: free
+    envVars:
+      - key: NEXT_PUBLIC_API_URL
+        fromService:
+          type: web
+          name: sih-codex-api
+          property: host

@@ -9,6 +9,10 @@ from app.config import settings
 from app.core.logging import setup_logging
 
 
+def _origin(value: str) -> str:
+    return value if value.startswith(("http://", "https://")) else f"https://{value}"
+
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     setup_logging()
@@ -16,7 +20,8 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(title=settings.app_name, version=settings.app_version, lifespan=lifespan)
-app.add_middleware(CORSMiddleware, allow_origins=settings.cors_origins, allow_credentials=True, allow_methods=["*"], allow_headers=["*"])
+cors_origins = [_origin(origin) for origin in [*settings.cors_origins, settings.frontend_url] if origin]
+app.add_middleware(CORSMiddleware, allow_origins=cors_origins, allow_credentials=True, allow_methods=["*"], allow_headers=["*"])
 app.include_router(health.router)
 app.include_router(ingest.router)
 app.include_router(cases.router)
