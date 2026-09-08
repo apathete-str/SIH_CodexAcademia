@@ -9,10 +9,7 @@ services:
       - key: ENVIRONMENT
         value: production
       - key: FRONTEND_URL
-        fromService:
-          type: web
-          name: sih-codex-frontend
-          property: host
+        value: https://sih-codex-frontend.onrender.com
 
   - type: web
     name: sih-codex-frontend
@@ -21,12 +18,6 @@ services:
     plan: free
     envVars:
       - key: NEXT_PUBLIC_API_URL
-        fromService:
-          type: web
-          name: sih-codex-api
-          property: host
+        value: https://sih-codex-api.onrender.com
       - key: API_PROXY_URL
-        fromService:
-          type: web
-          name: sih-codex-api
-          property: host
+        value: https://sih-codex-api.onrender.com
