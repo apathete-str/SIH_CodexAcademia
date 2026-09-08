@@ -19,7 +19,7 @@ export default function Home() {
     setFileName(file.name);
     setLoading(true); setError('');
     try {
-      if (!API) throw new Error('Analysis service is not configured. Set NEXT_PUBLIC_API_URL in Vercel.');
+      if (!API && process.env.NODE_ENV === 'development') throw new Error('Analysis service is not configured.');
       const body = new FormData();
       body.append('file', file);
       const response = await fetch(`${API.replace(/\/$/, '')}/api/v1/ingest/analyze`, { method: 'POST', body });
