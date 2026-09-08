@@ -5,7 +5,7 @@ import { ShieldCheck, Upload, Search, MapPin, Activity, ArrowUpRight, FileText, 
 
 type Result = { email: { subject: string; from_addr?: string; body_text: string; urls: string[] }; threat: { threat_score: number; verdict: string; category?: string; confidence: number; explanation: string; signals: { name: string; score: number; description: string }[] }; geo: { origin_country?: string; sender_ip?: string; geo_risk: number }; iocs?: { type: string; value: string; source: string }[]; timeline?: { stage: string; action: string; status: string }[] };
 
-const configuredApi = process.env.NEXT_PUBLIC_API_URL || (process.env.NODE_ENV === 'development' ? 'http://localhost:8000' : '');
+const configuredApi = process.env.NEXT_PUBLIC_API_URL || (process.env.NODE_ENV === 'development' ? 'http://localhost:8000' : 'https://sih-codex-api.onrender.com');
 const API = configuredApi && /^https?:\/\//.test(configuredApi) ? configuredApi : configuredApi ? `https://${configuredApi}` : '';
 
 export default function Home() {
