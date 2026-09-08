@@ -4,11 +4,7 @@ services:
     runtime: docker
     rootDir: backend
     healthCheckPath: /health
-    plan: starter
-    disk:
-      name: artifacts
-      mountPath: /app/data
-      sizeGB: 1
+    plan: free
     envVars:
       - key: ENVIRONMENT
         value: production

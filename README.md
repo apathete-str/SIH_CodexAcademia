@@ -52,7 +52,7 @@ Redeploy both services after changing these values. The frontend intentionally u
 
 ### Render deployment
 
-This repository includes `render.yaml` for Render Blueprint deployment. In Render, choose **New > Blueprint**, connect this repository, and apply the Blueprint. It creates `sih-codex-api` and `sih-codex-frontend`, wires their URLs together, and mounts persistent storage for uploaded artifacts. The API uses Render's smallest paid web plan because persistent disks are not available on free services.
+This repository includes `render.yaml` for Render Blueprint deployment. In Render, choose **New > Blueprint**, connect this repository, and apply the Blueprint. It creates `sih-codex-api` and `sih-codex-frontend` and wires their URLs together. Both services use the free plan, so no card is required. Uploaded artifacts use the existing local-storage fallback and may be removed when the API restarts or sleeps.
 
 ## Project Structure
 ```
